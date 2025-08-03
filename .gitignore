@@ -1,0 +1,30 @@
+# Ignore compiled simulation directories and files
+sim/
+logs/
+work/
+*.vcd
+*.wlf
+*.log
+*.ucdb
+*.ini
+transcript
+
+# Ignore GTKWave save files
+*.gtkw
+
+# Ignore common backup and temporary files
+*~
+*.swp
+*.bak
+*.tmp
+
+# Ignore coverage or tool-generated files (optional)
+*.cov
+*.daidir
+*.history
+*.vpd
+*.key
+
+# Ignore Python cache files if using any Python scripts
+__pycache__/
+*.pyc
