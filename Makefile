@@ -26,7 +26,7 @@ ifeq ($(SIM), questa)
 	INCDIR     = +incdir+$(ENV_DIR)/design +incdir+$(ENV_DIR)/tb
 	ifeq ($(gui), 1)
 	gui_flag = -gui
-	else 
+	else
 	gui_flag = -c
 	endif
 else ifeq ($(SIM), vcs)
@@ -56,7 +56,7 @@ waves:
 
 clean:
 	@echo "[CLEAN] Removing simulation and log files..."
-	@rm -rf $(ENV_DIR)/sim/work $(ENV_DIR)/logs $(ENV_DIR)/work *.vcd transcript *.wlf *.log *.ucdb *.ini
+	@rm -rf $(ENV_DIR)/sim/ $(ENV_DIR)/logs $(ENV_DIR)/work *.vcd transcript *.wlf *.log *.ucdb *.ini
 
 all: clean build run
 
