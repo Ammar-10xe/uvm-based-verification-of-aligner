@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 // File:        cfs_algn_test_reg_access.sv
-// Author:      Cristian Florin Slav
-// Date:        2023-06-27
+// Author:      Ammar Khan
 // Description: Register access test. It targets APB accesses to the registers
 //              of the Aligner module.
 ///////////////////////////////////////////////////////////////////////////////
