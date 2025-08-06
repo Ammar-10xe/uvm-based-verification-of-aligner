@@ -34,6 +34,10 @@ module testbench;
     .pslverr(apb_if.pslverr)
   );
 
+  initial begin
+    uvm_config_db#(virtual cfs_apb_if)::set(uvm_root::get(),"*", "vif", apb_if);
+  end
+  
   // Start UVM test and phases
   initial begin
     run_test("");
