@@ -25,12 +25,26 @@
       env = cfs_algn_env::type_id::create("env",this);
     endfunction
 
-    function void report_phase(uvm_phase phase);
-      super.report_phase(phase);  
-      uvm_top.print_topology();
+    virtual function void end_of_elaboration();
+      //print's the topology
+	  	uvm_top.print_topology();
     endfunction
-    
-    
+
+    virtual function void report_phase(uvm_phase phase);
+      uvm_report_server svr = uvm_report_server::get_server();
+      super.report_phase(phase);
+      if(svr.get_severity_count(UVM_FATAL)+svr.get_severity_count(UVM_ERROR)+svr.get_severity_count(UVM_WARNING)>0) begin
+       `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
+       `uvm_info(get_type_name(), "----            TEST FAIL          ----", UVM_NONE)
+       `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
+      end
+      else begin
+       `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
+       `uvm_info(get_type_name(), "----           TEST PASS           ----", UVM_NONE)
+       `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
+      end
+    endfunction
+
   endclass
 
 `endif
