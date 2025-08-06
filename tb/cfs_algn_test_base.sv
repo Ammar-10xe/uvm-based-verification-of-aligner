@@ -25,6 +25,12 @@
       env = cfs_algn_env::type_id::create("env",this);
     endfunction
 
+    function void report_phase(uvm_phase phase);
+      super.report_phase(phase);  
+      uvm_top.print_topology();
+    endfunction
+    
+    
   endclass
 
 `endif
