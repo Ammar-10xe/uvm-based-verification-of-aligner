@@ -10,25 +10,28 @@ import uvm_pkg::*;
 import cfs_algn_test_pkg::*;
 
 module testbench;
-  reg clk,reset_n;
+  reg clk;
+  
+  //Instantiate the interface
+  cfs_apb_if apb_if(.pclk(clk));
 
   initial begin // 100MHZ clk generation
     clk = 0;
     forever #5 clk = ~clk;
   end
 
-  initial begin // reset generation
-    reset_n = 1;
-    repeat(5) @(posedge clk);
-    reset_n = 0;
-    repeat(5) @(posedge clk);
-    reset_n = 1;
-  end
-
   //Instantiate the DUT
-  cfs_aligner dut(
+    cfs_aligner dut(
     .clk(    clk),
-    .reset_n(reset_n)
+    .reset_n(apb_if.preset_n),
+    .paddr(  apb_if.paddr),
+    .pwrite( apb_if.pwrite),
+    .psel(   apb_if.psel),
+    .penable(apb_if.penable),
+    .pwdata( apb_if.pwdata),
+    .pready( apb_if.pready),
+    .prdata( apb_if.prdata),
+    .pslverr(apb_if.pslverr)
   );
 
   // Start UVM test and phases
